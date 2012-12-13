@@ -45,3 +45,11 @@ Work ahead:
 5. Data storage. Entries should be stored in flat files using a content-addressing system similar to Git. My intention was to write my own "NoDB" solution for performing tag filtering (set intersection), but perhaps a tested solution like SQLite would be more practical. Either way, tag handling must be performant and scalable.
 
 6. Markup/formatting. The current markup syntax is hacked together and not based on any standard. Markdown should be avoided for the same reasons. Swappable markup parsers could be useful for different purposes. Currently, parsing is done with OMeta, which is slow and difficult to debug. I've written my own parsing system which might be a suitable replacement. Perhaps non-text media files should also be supported.
+
+Using it:
+
+First, you will need Node.js and `npm install ometajs`. Start the server by running `server/index.js`.
+
+The entry creation interface is hosted at http://localhost:8000/. Entries and tags can be looked up at http://localhost:8000/id/[tag name or entry hash]. Multiple tags can be intersected using `+`.
+
+When composing entries, a variety of unintuitive markup constructs are available. #hashtag syntax is used to add tags.
