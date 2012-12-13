@@ -1,0 +1,25 @@
+* {
+	margin: 0;
+	line-height: 1.5em;
+	font-family: Melno, Monaco, Consolas, sans-serif;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.absolute { position: absolute; }
+
+.wrapper > input, .wrapper > textarea { width: 100%; height: 100%; background: none; border: none; outline: none; padding: 1em; }
+
+body { white-space: pre-wrap; word-wrap: break-word; }
+hr { margin-top: 1em; }
+blockquote { margin-left: 0.5em; padding-left: 0.5em; border-left: 2px solid blue; }
+
+.toolbar { left: 0; top: 0; right: 0; height: 30px; background: #eee; }
+.toolbar > .tags { left: 0; top: 0; right: 80px; bottom: 0; }
+.toolbar > .submit { right: 0; top: 0; height: 30px; width: 80px; border: none; }
+.textarea { left: 0; top: 30px; right: 0; bottom: 0; font-size: 0; }
+
+textarea { font-size: large; }

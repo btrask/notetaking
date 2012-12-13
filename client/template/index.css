@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	line-height: 1.5em;
+	font-family: Melno, Monaco, Consolas, sans-serif;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body { white-space: pre-wrap; word-wrap: break-word; padding: 1em; }
+blockquote { margin-left: 0.5em; padding-left: 0.5em; border-left: 2px solid blue; }
+:link { text-decoration: none; }
+:link:hover { text-decoration: underline; }
