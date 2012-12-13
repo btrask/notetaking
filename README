@@ -1,0 +1,47 @@
+Design:
+
+The software presents an append-only storage system. Individual appensions are called entries. Entries can be tagged and reference other entries. Tags can reference or "imply" other tags, and these changes are made using entries in a special format. The software will be distributed in nature, with each instance called a repository, and the ability to push/pull entries between repositories in realtime.
+
+This system is similar but backwards from a Version Control System (VCS) or Wiki, which one might call a Document-History Model (DHM). Under the DHM, changes are applied over time to fixed documents that are more-or-less known in advance. Conversely, at its most basic (without tags, only needed for organization), the system described here is merely a chronological stream of immutable documents.
+
+A system like this is generalized and maps well onto:
+- Blogs
+- Forums
+- RSS
+- IRC
+- IM
+- Email (including mailing lists)
+- Notetakers/todo lists (like Evernote)
+- Twitter
+- Team collaboration tools
+- Lab notebooks
+
+(As mentioned, it maps poorly to Version Control Systems, and Wikis, as well as P2P file sharing software or voice/video chat.)
+
+The goal is not to replace all of these; most are well-entrenched due to network effects. The software is designed to be useful even when used by one person alone.
+
+Anonymity is not a specific goal, but anonymous entry authoring would be possible using shared repos hosted by a third party. From a practical standpoint, anonymity just means mixed/indeterminate authorship.
+
+Done so far:
+
+It is possible to submit textual entries via a web interface. Text is parsed using a hacked together, non-standard markup system. Hashtags are extracted and indexed. Entries are hashed and stored. Multiple tags can be filtered (intersected), but performance is O(N^M) with the number of entries and tags filtered.
+
+I've been using the system as my primary notetaker since 2012-11-09. Statistics as of 2012-12-13:
+- HTML size of `index` tag listing (all entries): 1.0MB
+- Size of entries as plain text: 713KB
+- Number of entries: 1493
+- Number of tags: 347
+
+Work ahead:
+
+1. Distributed architecture. Similar to Git, it should be possible to pull from other repositories. Every entry should be tagged by the repository it was created under (authorship), and the repository it was pulled from.
+
+2. Realtime. There should be a realtime web interface, similar to a chat system, with configurable tag filters. The pull network should be realtime as well, which probably means building a legitimate P2P system.
+
+3. Tag features. Entries and tags can have tags, which should apply to any entries and tags that reference them recursively. It should be possible to add and remove tags using entries written in a simple format.
+
+4. Private communications. To function as a chat system, there must be a way to limit the transfer of certain entries to certain repositories. Some security features are needed to prevent pulled entries from being harmful (messing up tags). Network communications should be encrypted.
+
+5. Data storage. Entries should be stored in flat files using a content-addressing system similar to Git. My intention was to write my own "NoDB" solution for performing tag filtering (set intersection), but perhaps a tested solution like SQLite would be more practical. Either way, tag handling must be performant and scalable.
+
+6. Markup/formatting. The current markup syntax is hacked together and not based on any standard. Markdown should be avoided for the same reasons. Swappable markup parsers could be useful for different purposes. Currently, parsing is done with OMeta, which is slow and difficult to debug. I've written my own parsing system which might be a suitable replacement. Perhaps non-text media files should also be supported.
