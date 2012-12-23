@@ -1,8 +1,8 @@
 Design:
 
-The software presents an append-only storage system. Individual appensions are called entries. Entries can be tagged and reference other entries. Tags can reference or "imply" other tags, and these changes are made using entries in a special format. The software will be distributed in nature, with each instance called a repository, and the ability to push/pull entries between repositories in realtime.
+The software presents an append-only storage system. Individual appensions are called entries. Entries can be tagged and reference other entries. Tags can reference or "imply" other tags, and these changes are made using entries in a special format. The software will support a distributed network, with each instance called a repository, and the ability to push/pull entries between repositories in realtime.
 
-This system is similar but backwards from a Version Control System (VCS) or Wiki, which one might call a Document-History Model (DHM). Under the DHM, changes are applied over time to fixed documents that are more-or-less known in advance. Conversely, at its most basic (without tags, only needed for organization), the system described here is merely a chronological stream of immutable documents.
+This system is similar to but backwards from a Version Control System (VCS) or Wiki, which one might call a Document-History Model (DHM). Under the DHM, changes are applied over time to fixed documents that are more-or-less known in advance. Conversely, at its most basic (without tags, only needed for organization), the system described here is merely a chronological stream of immutable documents.
 
 A system like this is generalized and maps well onto:
 - Blogs
@@ -42,7 +42,7 @@ Work ahead:
 
 4. Private communications. To function as a chat system, there must be a way to limit the transfer of certain entries to certain repositories. Some security features are needed to prevent pulled entries from being harmful (messing up tags). Network communications should be encrypted.
 
-5. Data storage. Entries should be stored in flat files using a content-addressing system similar to Git. My intention was to write my own "NoDB" solution for performing tag filtering (set intersection), but perhaps a tested solution like SQLite would be more practical. Either way, tag handling must be performant and scalable.
+5. Data storage. Entries should be stored in flat files using a content-addressing system similar to Git. My intention was to write my own "NoDB" solution for performing tag filtering (set intersection, unions, etc.), but perhaps a tested solution like SQLite would be more practical. Either way, tag handling must be performant and scalable.
 
 6. Markup/formatting. The current markup syntax is hacked together and not based on any standard. Markdown should be avoided for the same reasons. Swappable markup parsers could be useful for different purposes. Currently, parsing is done with OMeta, which is slow and difficult to debug. I've written my own parsing system which might be a suitable replacement. Perhaps non-text media files should also be supported.
 
